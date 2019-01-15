@@ -1,6 +1,7 @@
 
 package services;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
@@ -89,7 +90,8 @@ public class ApplicationService {
 			if (app.getStatus() != a.getStatus()) {
 				final Message m = this.messageService.create();
 				m.setSubject("Status application of Fix Up " + a.getFixUpTask().getTicker());
-				m.setBody("EN: Status of your appliaction has been modificated" + '\n' + "ES:El estatus de su aplicación ha sido modificado");
+				m.setBody("EN: Status of your appliaction has been modificated from " + this.getStatusApp(app.getStatus()).get(0) + " to " + this.getStatusApp(a.getStatus()).get(0) + "    " + "ES:El estatus de su aplicación ha sido modificado de "
+					+ this.getStatusApp(app.getStatus()).get(1) + " a " + this.getStatusApp(a.getStatus()).get(1));
 				m.setEmailReceiver(a.getHandyWorker().getEmail());
 				m.setPriority(0);
 				final Message saved = this.messageService.save(m);
@@ -135,5 +137,22 @@ public class ApplicationService {
 
 	public Double rationPendingAppStatus() {
 		return this.applicationRepository.ratioPendingAppStatus();
+	}
+
+	public List<String> getStatusApp(final int status) {
+		final List<String> res = new ArrayList<>();
+		if (status == 0) {
+			res.add("Accepted");
+			res.add("Aceptada");
+
+		} else if (status == 1) {
+			res.add("Pending");
+			res.add("Pendiente");
+		} else {
+			res.add("Rejected");
+			res.add("Rechazada");
+		}
+
+		return res;
 	}
 }
