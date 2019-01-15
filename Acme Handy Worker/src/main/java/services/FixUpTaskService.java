@@ -132,4 +132,7 @@ public class FixUpTaskService {
 	public Collection<FixUpTask> findAllCustomerById(final Integer customerId) {
 		return this.fixUpTaskRepository.fixUpTasksCustomer(customerId);
 	}
+	public Date dateExpiration(final Integer id) {
+		return this.fixUpTaskRepository.dateExpiracion(id);
+	}
 }

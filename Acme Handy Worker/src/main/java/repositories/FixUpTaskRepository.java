@@ -49,4 +49,7 @@ public interface FixUpTaskRepository extends JpaRepository<FixUpTask, Integer> {
 	@Query("select avg(1.0*(select count(c.fixUpTask) from Complaint c where c.fixUpTask.id=f.id)), min(1.0*(select count(c.fixUpTask) from Complaint c where c.fixUpTask.id=f.id)),max(1.0*(select count(c.fixUpTask) from Complaint c where c.fixUpTask.id=f.id)), sqrt(1.0*sum(1.0*(select count(c.fixUpTask) from Complaint c where c.fixUpTask.id=f.id) *	 (select count(c.fixUpTask) from Complaint c where c.fixUpTask.id=f.id)) /	 count(f) - avg(1.0*(select count(c.fixUpTask) from Complaint c where c.fixUpTask.id=f.id))*	 avg(1.0*(select count(c.fixUpTask) from Complaint c where c.fixUpTask.id=f.id))) from FixUpTask f")
 	public List<Object[]> getMaxMinAvgDesvFixUpComplaint();
 
+	@Query(value = "select date_add(moment, interval period_time day) from Fix_up_task where Fix_up_task.id=?1", nativeQuery = true)
+	public Date dateExpiracion(Integer FixId);
+
 }
