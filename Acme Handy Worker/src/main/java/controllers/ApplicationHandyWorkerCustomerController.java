@@ -19,6 +19,7 @@ import security.UserAccount;
 import services.ApplicationService;
 import services.CreditCardService;
 import services.CustomerService;
+import services.CustomizableSystemService;
 import services.FixUpTaskService;
 import services.HandyWorkerService;
 import domain.Application;
@@ -37,15 +38,17 @@ public class ApplicationHandyWorkerCustomerController extends AbstractController
 
 
 	@Autowired
-	private HandyWorkerService	HWService;
+	private HandyWorkerService			HWService;
 	@Autowired
-	private CustomerService		customerService;
+	private CustomerService				customerService;
 	@Autowired
-	private ApplicationService	applicationS;
+	private ApplicationService			applicationS;
 	@Autowired
-	private CreditCardService	creditCardS;
+	private CreditCardService			creditCardS;
 	@Autowired
-	private FixUpTaskService	fixUpTaskS;
+	private FixUpTaskService			fixUpTaskS;
+	@Autowired
+	private CustomizableSystemService	customizableSystem;
 
 
 	@RequestMapping(value = "/applications", method = RequestMethod.GET)
@@ -124,6 +127,8 @@ public class ApplicationHandyWorkerCustomerController extends AbstractController
 			Assert.notNull(application);
 			result = new ModelAndView("application/show");
 			result.addObject("application", application);
+			result.addObject("IVA", this.customizableSystem.getIVA() * application.getPrice());
+
 		} catch (final Exception e) {
 			result = new ModelAndView("redirect:list.do");
 		}

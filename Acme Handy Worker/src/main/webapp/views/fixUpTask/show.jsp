@@ -23,7 +23,7 @@
 	<spring:message code="fixUpTask.moment" />: ${fixUpTask.moment} <br />
 	<spring:message code="fixUpTask.description" />: ${fixUpTask.description} <br />
 	<spring:message code="fixUpTask.address" />: ${fixUpTask.address} <br />
-	<spring:message code="fixUpTask.maximunPrice" />: ${fixUpTask.maximunPrice} <br />
+	<spring:message code="fixUpTask.maximunPrice" />: ${fixUpTask.maximunPrice} (${IVA })<br />
 	<spring:message code="fixUpTask.periodTime" />: ${fixUpTask.periodTime} <br />
 	<spring:message code="fixUpTask.category" />: ${fixUpTask.category.name} <br />
 	<spring:message code="fixUpTask.warranty" />: ${fixUpTask.warranty.title} <br />

@@ -22,7 +22,7 @@
 
 	<spring:message code="application.moment" />: ${application.moment} <br />
 	<spring:message code="application.status" />: ${application.status} <br />
-	<spring:message code="application.price" />: ${application.price} <br />
+	<spring:message code="application.price" />: ${application.price}  (${IVA })<br />
 	<spring:message code="application.comments" />: ${application.comments} <br />
 	<spring:message code="application.fixUpTask" />: ${application.fixUpTask.ticker} <br />
 	<spring:message code="application.customer" />: ${application.fixUpTask.customer.name} <br />

@@ -62,9 +62,8 @@ public class CustomizableSystemService {
 		return this.customizableSystemRepository.save(customizableSystem);
 	}
 
-	//deleting
-	//	public void delete(final CustomizableSystem customizableSystem) {
-	//		this.customizableSystemRepository.delete(customizableSystem);
-	//	}
+	public Double getIVA() {
+		return (double) this.customizableSystemRepository.getIVA() / 100;
+	}
 
 }

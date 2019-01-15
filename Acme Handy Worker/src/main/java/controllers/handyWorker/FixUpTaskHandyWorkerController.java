@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.CustomerService;
+import services.CustomizableSystemService;
 import services.FixUpTaskService;
 import services.ProfileSocialNetworkService;
 import controllers.AbstractController;
@@ -28,6 +29,8 @@ public class FixUpTaskHandyWorkerController extends AbstractController {
 	private CustomerService				customerService;
 	@Autowired
 	private ProfileSocialNetworkService	profileSocialNetworkService;
+	@Autowired
+	private CustomizableSystemService	customizableSystem;
 
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
@@ -51,12 +54,12 @@ public class FixUpTaskHandyWorkerController extends AbstractController {
 			Assert.notNull(fixUpTask);
 			result = new ModelAndView("fixUpTask/show");
 			result.addObject("fixUpTask", fixUpTask);
+			result.addObject("IVA", this.customizableSystem.getIVA() * fixUpTask.getMaximunPrice());
 		} catch (final Exception e) {
 			result = new ModelAndView("redirect:list.do");
 		}
 		return result;
 	}
-
 	@RequestMapping(value = "/customer-data", method = RequestMethod.GET)
 	public ModelAndView info(@RequestParam final int customerId) {
 		ModelAndView result;

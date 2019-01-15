@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.CategoryService;
+import services.CustomizableSystemService;
 import services.FixUpTaskService;
 import services.WarrantyService;
 import controllers.AbstractController;
@@ -27,11 +28,13 @@ import domain.Warranty;
 public class FixUpTaskCustomerController extends AbstractController {
 
 	@Autowired
-	private FixUpTaskService	fixUpTaskService;
+	private FixUpTaskService			fixUpTaskService;
 	@Autowired
-	private CategoryService		categoryService;
+	private CategoryService				categoryService;
 	@Autowired
-	private WarrantyService		warrantyService;
+	private WarrantyService				warrantyService;
+	@Autowired
+	private CustomizableSystemService	customizableSystem;
 
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
@@ -114,6 +117,8 @@ public class FixUpTaskCustomerController extends AbstractController {
 			Assert.notNull(fixUpTask);
 			result = new ModelAndView("fixUpTask/show");
 			result.addObject("fixUpTask", fixUpTask);
+			result.addObject("IVA", this.customizableSystem.getIVA() * fixUpTask.getMaximunPrice());
+
 		} catch (final Exception e) {
 			result = new ModelAndView("redirect:list.do?exception=-1");
 		}
