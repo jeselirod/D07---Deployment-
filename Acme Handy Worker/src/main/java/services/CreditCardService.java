@@ -21,6 +21,8 @@ public class CreditCardService {
 	private CreditCardRepository	creditCardRepository;
 	@Autowired
 	private ActorService			actorService;
+	@Autowired
+	private CreditCardTypeService	CRTypeS;
 
 
 	public Collection<CreditCard> findAll() {
@@ -39,13 +41,21 @@ public class CreditCardService {
 		return cc;
 	}
 	public CreditCard save(final CreditCard cc) {
+		final Collection<String> brandNames = this.CRTypeS.getBrandName();
+		final Collection<Integer> creditCardsNumbers = this.getAllNumbers();
 		final UserAccount user = this.actorService.getActorLogged().getUserAccount();
-		Assert.isTrue(user.getAuthorities().iterator().next().getAuthority().equals("CUSTOMER"));
+		Assert.isTrue(brandNames.contains(cc.getBrandName()));
+		Assert.isTrue(!creditCardsNumbers.contains(cc.getNumber()));
+		Assert.isTrue(user.getAuthorities().iterator().next().getAuthority().equals("CUSTOMER") || user.getAuthorities().iterator().next().getAuthority().equals("SPONSOR"));
 		Assert.isTrue(cc != null && cc.getBrandName() != null && cc.getHolderName() != null && cc.getBrandName() != "" && cc.getHolderName() != "");
 		return this.creditCardRepository.save(cc);
 
 	}
 	public Collection<CreditCard> getAllMyCreditCards(final int actorId) {
 		return this.creditCardRepository.getAllMyCreditCards(actorId);
+	}
+
+	public Collection<Integer> getAllNumbers() {
+		return this.creditCardRepository.getAllNumberCreditCards();
 	}
 }

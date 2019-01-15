@@ -42,4 +42,8 @@ public class CreditCardTypeService {
 		Assert.isTrue(!(c.getBrandName().equals("VISA") || c.getBrandName().equals("MASTER") || c.getBrandName().equals("DINNERS") || c.getBrandName().equals("AMEX")), "CreditCardTypeService.delete -> You can't delete a default type.");
 		this.creditCardTypeRepository.delete(c);
 	}
+
+	public Collection<String> getBrandName() {
+		return this.creditCardTypeRepository.getAllBrandName();
+	}
 }

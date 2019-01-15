@@ -86,6 +86,8 @@
   		<security:intercept-url pattern="/finder/handyWorker/**" access="hasRole('HANDYWORKER')" />		
 		<security:intercept-url pattern="/fixUpTask/customer/**" access="hasRole('CUSTOMER')" />
 
+		<security:intercept-url pattern="/creditCard/customer,sponsor/**" access="hasAnyRole('CUSTOMER','SPONSOR')" /> 
+		
 		<security:intercept-url pattern="/curricula/handyWorker/**" access="hasRole('HANDYWORKER')" /> 
   <security:intercept-url pattern="/educationRecord/handyWorker/**" access="hasRole('HANDYWORKER')" /> 
   <security:intercept-url pattern="/professionalRecord/handyWorker/**" access="hasRole('HANDYWORKER')" /> 

@@ -65,6 +65,7 @@
 			<li><a href="fix-up-task/customer/list.do"><spring:message	code="master.page.customer.fixUpTask" /></a>
 			<li><a href="endorsement/customer/list.do"><spring:message	code="master.page.customer.endorsement" /></a>
 			<li><a href="application/handyWorker,customer/applications.do"><spring:message code="master.page.handyworker.applications"/></a></li>
+			<li><a href="creditCard/customer,sponsor/list.do"><spring:message code="master.page.customer.creditCard"/></a></li>
 		</security:authorize>
 		
 			<security:authorize access="hasRole('REFEREE')">
@@ -97,6 +98,7 @@
 					<li class="arrow"></li>
 					<li><a href="sponsorship/sponsor/list.do"><spring:message code="master.page.sponsor.sponsorships" /></a></li>
 				</ul>
+			<li><a href="creditCard/customer,sponsor/list.do"><spring:message code="master.page.customer.creditCard"/></a></li>
 			</li>
 		</security:authorize>
 		

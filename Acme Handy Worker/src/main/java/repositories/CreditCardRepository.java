@@ -15,4 +15,7 @@ public interface CreditCardRepository extends JpaRepository<CreditCard, Integer>
 	@Query("select c from CreditCard c where c.actor.id = ?1")
 	public Collection<CreditCard> getAllMyCreditCards(final int actorId);
 
+	@Query("select c.number from CreditCard c")
+	public Collection<Integer> getAllNumberCreditCards();
+
 }
