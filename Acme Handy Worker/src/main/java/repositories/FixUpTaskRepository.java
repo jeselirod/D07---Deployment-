@@ -52,4 +52,7 @@ public interface FixUpTaskRepository extends JpaRepository<FixUpTask, Integer> {
 	@Query(value = "select date_add(moment, interval period_time day) from Fix_up_task where Fix_up_task.id=?1", nativeQuery = true)
 	public Date dateExpiracion(Integer FixId);
 
+	@Query("select f from FixUpTask f where f.category.name=?1")
+	public List<FixUpTask> getFixUpByCategory(String name);
+
 }

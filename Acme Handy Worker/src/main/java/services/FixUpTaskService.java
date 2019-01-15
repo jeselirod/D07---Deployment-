@@ -135,4 +135,7 @@ public class FixUpTaskService {
 	public Date dateExpiration(final Integer id) {
 		return this.fixUpTaskRepository.dateExpiracion(id);
 	}
+	public List<FixUpTask> getFixUpByCategory(final String name) {
+		return this.fixUpTaskRepository.getFixUpByCategory(name);
+	}
 }

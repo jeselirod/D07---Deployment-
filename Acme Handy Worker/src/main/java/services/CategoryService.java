@@ -3,6 +3,7 @@ package services;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 
 import javax.transaction.Transactional;
 
@@ -14,6 +15,7 @@ import repositories.CategoryRepository;
 import security.LoginService;
 import security.UserAccount;
 import domain.Category;
+import domain.FixUpTask;
 
 @Service
 @Transactional
@@ -21,6 +23,8 @@ public class CategoryService {
 
 	@Autowired
 	private CategoryRepository	categoryRepository;
+	@Autowired
+	private FixUpTaskService	fixUpService;
 
 
 	//private final Category		c	= this.rootCategory();
@@ -81,6 +85,13 @@ public class CategoryService {
 		final UserAccount user = LoginService.getPrincipal();
 		Assert.isTrue(user.getAuthorities().iterator().next().getAuthority().equals("ADMIN"), "CategoryService.delete -> Authority");
 		Assert.isTrue(!(category.getName().equals("CATEGORY")));
+
+		final List<FixUpTask> lista = this.fixUpService.getFixUpByCategory(category.getName());
+		for (int i = 0; i < lista.size(); i++) {
+			final FixUpTask f = lista.get(i);
+			f.setCategory(this.rootCategory());
+			this.fixUpService.save(f);
+		}
 
 		this.categoryRepository.delete(category);
 
