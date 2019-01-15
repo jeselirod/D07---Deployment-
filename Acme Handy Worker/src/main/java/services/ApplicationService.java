@@ -10,7 +10,6 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
@@ -23,6 +22,7 @@ import domain.Customer;
 import domain.FixUpTask;
 import domain.HandyWorker;
 import domain.Message;
+import domain.MessageBox;
 
 @Service
 @Transactional
@@ -40,6 +40,8 @@ public class ApplicationService {
 	private HandyWorkerService		HWService;
 	@Autowired
 	private MessageService			messageService;
+	@Autowired
+	private MessageBoxService		messageBoxService;
 
 
 	public Application create() {
@@ -85,24 +87,19 @@ public class ApplicationService {
 		if (a.getId() != 0) {
 			final Application app = this.applicationRepository.findOne(a.getId());
 			if (app.getStatus() != a.getStatus()) {
-				final String lang = LocaleContextHolder.getLocale().getLanguage();
-				if (lang.equals("en")) {
-					final Message m = this.messageService.create();
-					m.setSubject("Status application of Fix Up " + a.getFixUpTask().getTicker());
-					m.setBody("Status of your appliaction has been modificated");
-					m.setEmailReceiver(a.getHandyWorker().getEmail());
-					m.setPriority(0);
-					final Message saved = this.messageService.save(m);
-					this.messageService.sendMessage(saved);
-				} else if (lang.equals("es")) {
-					final Message m = this.messageService.create();
-					m.setSubject("Estatus de su aplicacion " + a.getFixUpTask().getTicker());
-					m.setBody("El estatus de su aplicación ha sido modificado");
-					m.setEmailReceiver(a.getHandyWorker().getEmail());
-					m.setPriority(0);
-					final Message saved = this.messageService.save(m);
-					this.messageService.sendMessage(saved);
-				}
+				final Message m = this.messageService.create();
+				m.setSubject("Status application of Fix Up " + a.getFixUpTask().getTicker());
+				m.setBody("EN: Status of your appliaction has been modificated" + '\n' + "ES:El estatus de su aplicación ha sido modificado");
+				m.setEmailReceiver(a.getHandyWorker().getEmail());
+				m.setPriority(0);
+				final Message saved = this.messageService.save(m);
+
+				final Customer cust = this.customerService.customerByUserAccount(userAccount.getId());
+				final MessageBox inCustomer = this.messageBoxService.getInBox(cust.getId());
+				inCustomer.getMessages().add(saved);
+
+				final MessageBox inHandy = this.messageBoxService.getInBox(a.getHandyWorker().getId());
+				inHandy.getMessages().add(saved);
 
 			}
 		}
