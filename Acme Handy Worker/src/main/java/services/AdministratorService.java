@@ -148,11 +148,11 @@ public class AdministratorService {
 			Assert.isTrue(a.getMiddleName().equals(admin.getMiddleName()), "Un administrador no debe modificar estos datos");
 			Assert.isTrue(a.getSurname().equals(admin.getSurname()), "Un administrador no debe modificar estos datos");
 			Assert.isTrue(a.getPhoto().equals(admin.getPhoto()), "Un administrador no debe modificar estos datos");
-			Assert.isTrue(a.getEmail().equals(admin.getEmail()), "Un administrador no debe modificar estos datos");
-			Assert.isTrue(a.getPhone().equals(admin.getPhone()), "Un administrador no debe modificar estos datos");
-			Assert.isTrue(a.getAddress().equals(admin.getAddress()), "Un administrador no debe modificar estos datos");
-			Assert.isTrue(a.getNumberSocialProfiles() == (admin.getNumberSocialProfiles()), "Un administrador no debe modificar estos datos");
-			Assert.isTrue(a.getUserAccount() == (admin.getUserAccount()), "Un administrador no debe modificar estos datos");
+			//			Assert.isTrue(a.getEmail().equals(admin.getEmail()), "Un administrador no debe modificar estos datos");
+			//			Assert.isTrue(a.getPhone().equals(admin.getPhone()), "Un administrador no debe modificar estos datos");
+			//			Assert.isTrue(a.getAddress().equals(admin.getAddress()), "Un administrador no debe modificar estos datos");
+			//			Assert.isTrue(a.getNumberSocialProfiles() == (admin.getNumberSocialProfiles()), "Un administrador no debe modificar estos datos");
+			//			Assert.isTrue(a.getUserAccount() == (admin.getUserAccount()), "Un administrador no debe modificar estos datos");
 		}
 
 		if (admin.getIsBanned() == 1) {

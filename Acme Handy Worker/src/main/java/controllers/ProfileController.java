@@ -104,7 +104,7 @@ public class ProfileController extends AbstractController {
 		try {
 
 			if (!binding.hasErrors()) {
-				this.adminService.save(administrator);
+				this.adminService.SaveForBan(administrator);
 				this.profileService.UpdateProperty();
 				result = new ModelAndView("redirect:personal-datas.do");
 			} else {

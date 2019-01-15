@@ -98,7 +98,6 @@
 					<li><a href="sponsorship/sponsor/list.do"><spring:message code="master.page.sponsor.sponsorships" /></a></li>
 				</ul>
 			<li><a href="creditCard/customer,sponsor/list.do"><spring:message code="master.page.customer.creditCard"/></a></li>
-			</li>
 		</security:authorize>
 		
 		<security:authorize access="isAnonymous()">
@@ -113,7 +112,7 @@
 			</li>			<li><a href="tutorial/AllTutorials.do"><spring:message code="master.page.tutorials" /></a></li>
 		</security:authorize>
 		
-		<security:authorize access="isAuthenticated()">
+		<security:authorize access="hasRole('ADMIN') or hasRole('HANDYWORKER') or hasRole('CUSTOMER') or hasRole('SPONSOR') or hasRole('REFEREE')">
 			<li>
 				<a class="fNiv"> 
 					<spring:message code="master.page.profile" /> 
@@ -124,6 +123,19 @@
 					<li><a href="messageBox/actor/list.do"><spring:message code="master.page.profile.messageBox" /></a></li>
 					<li><a href="profile/personal-datas.do"><spring:message code="master.page.profile.personal.datas" /></a></li>
 					<li><a href="message/actor/send.do"><spring:message code="master.page.profile.action.3" /></a></li>					
+					<li><a href="j_spring_security_logout"><spring:message code="master.page.logout" /> </a></li>
+				</ul>
+			</li>
+		</security:authorize>
+		
+		<security:authorize access="hasRole('ADMIN_BAN') or hasRole('HANDY_WORKER_BAN') or hasRole('CUSTOMER_BAN') or hasRole('SPONSOR_BAN') or hasRole('REFEREE_BAN')">
+			<li>
+				<a class="fNiv"> 
+					<spring:message code="master.page.opss" /> 
+				</a>
+				<ul>
+					<li class="arrow"></li>
+					<li><a href="welcome/ban.do"><spring:message code="master.page.ban" /></a></li>
 					<li><a href="j_spring_security_logout"><spring:message code="master.page.logout" /> </a></li>
 				</ul>
 			</li>

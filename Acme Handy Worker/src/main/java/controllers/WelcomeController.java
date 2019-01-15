@@ -46,4 +46,14 @@ public class WelcomeController extends AbstractController {
 		return result;
 	}
 
+	@RequestMapping(value = "/ban")
+	public ModelAndView ban() {
+		ModelAndView result;
+
+		result = new ModelAndView("welcome/ban");
+
+		return result;
+
+	}
+
 }

@@ -137,15 +137,15 @@
 		<security:intercept-url pattern="/endorsement/handy-worker/create.do" access="hasRole('HANDYWORKER')"/>		
 			
 		
-		<security:intercept-url pattern="/messageBox/actor/list.do" access="isAuthenticated()" /> 
-		<security:intercept-url pattern="/messageBox/actor/edit.do" access="isAuthenticated()" /> 
-		<security:intercept-url pattern="/messageBox/actor/create.do" access="isAuthenticated()" /> 
+		<security:intercept-url pattern="/messageBox/actor/list.do" access="hasRole('ADMIN') or hasRole('HANDYWORKER') or hasRole('CUSTOMER') or hasRole('SPONSOR') or hasRole('REFEREE')"/> 
+		<security:intercept-url pattern="/messageBox/actor/edit.do" access="hasRole('ADMIN') or hasRole('HANDYWORKER') or hasRole('CUSTOMER') or hasRole('SPONSOR') or hasRole('REFEREE')"/> 
+		<security:intercept-url pattern="/messageBox/actor/create.do" access="hasRole('ADMIN') or hasRole('HANDYWORKER') or hasRole('CUSTOMER') or hasRole('SPONSOR') or hasRole('REFEREE')" /> 
 		
-		<security:intercept-url pattern="/message/actor/list.do" access="isAuthenticated()" /> 		
-		<security:intercept-url pattern="/message/actor/show.do" access="isAuthenticated()" /> 		
-		<security:intercept-url pattern="/message/actor/delete.do" access="isAuthenticated()" /> 		
+		<security:intercept-url pattern="/message/actor/list.do" access="hasRole('ADMIN') or hasRole('HANDYWORKER') or hasRole('CUSTOMER') or hasRole('SPONSOR') or hasRole('REFEREE')" /> 		
+		<security:intercept-url pattern="/message/actor/show.do" access="hasRole('ADMIN') or hasRole('HANDYWORKER') or hasRole('CUSTOMER') or hasRole('SPONSOR') or hasRole('REFEREE')"/> 		
+		<security:intercept-url pattern="/message/actor/delete.do" access="hasRole('ADMIN') or hasRole('HANDYWORKER') or hasRole('CUSTOMER') or hasRole('SPONSOR') or hasRole('REFEREE')" /> 		
 		
-		<security:intercept-url pattern="/profile/personal-datas.do" access="isAuthenticated()" /> 
+		<security:intercept-url pattern="/profile/personal-datas.do" access="hasRole('ADMIN') or hasRole('HANDYWORKER') or hasRole('CUSTOMER') or hasRole('SPONSOR') or hasRole('REFEREE')" /> 
 		<security:intercept-url pattern="/profile/edit-administrator.do" access="hasRole('ADMIN')" /> 
 		<security:intercept-url pattern="/profile/edit-referee.do" access="hasRole('REFEREE')" /> 
 		<security:intercept-url pattern="/profile/edit-sponsor.do" access="hasRole('SPONSOR')" /> 
@@ -153,10 +153,10 @@
 		<security:intercept-url pattern="/profile/edit-handyWorker.do" access="hasRole('HANDYWORKER')" /> 
 		
 		
-		<security:intercept-url pattern="/message/actor/send.do" access="isAuthenticated()" /> 
-		<security:intercept-url pattern="/profileSocial/actor/list.do" access="isAuthenticated()" /> 
-		<security:intercept-url pattern="/profileSocial/actor/create.do" access="isAuthenticated()" /> 
-		<security:intercept-url pattern="/profileSocial/actor/edit.do" access="isAuthenticated()" /> 
+		<security:intercept-url pattern="/message/actor/send.do" access="hasRole('ADMIN') or hasRole('HANDYWORKER') or hasRole('CUSTOMER') or hasRole('SPONSOR') or hasRole('REFEREE')"/> 
+		<security:intercept-url pattern="/profileSocial/actor/list.do" access="hasRole('ADMIN') or hasRole('HANDYWORKER') or hasRole('CUSTOMER') or hasRole('SPONSOR') or hasRole('REFEREE')" /> 
+		<security:intercept-url pattern="/profileSocial/actor/create.do" access="hasRole('ADMIN') or hasRole('HANDYWORKER') or hasRole('CUSTOMER') or hasRole('SPONSOR') or hasRole('REFEREE')" /> 
+		<security:intercept-url pattern="/profileSocial/actor/edit.do" access="hasRole('ADMIN') or hasRole('HANDYWORKER') or hasRole('CUSTOMER') or hasRole('SPONSOR') or hasRole('REFEREE')" /> 
 		
 		<security:intercept-url pattern="/sponsor/create.do" access="isAnonymous()" />
 		<security:intercept-url pattern="/sponsor/action-2.do" access="isAnonymous()" /> 
@@ -169,6 +169,7 @@
 		<security:intercept-url pattern="/customer/edit.do" access="isAnonymous()" /> 
 		
 	 
+		<security:intercept-url pattern="/welcome/ban.do" access="hasRole('ADMIN_BAN') or hasRole('HANDY_WORKER_BAN') or hasRole('CUSTOMER_BAN') or hasRole('SPONSOR_BAN') or hasRole('REFEREE_BAN')" /> 
 		
 	
 		<security:intercept-url pattern="/**" access="hasRole('NONE')" />

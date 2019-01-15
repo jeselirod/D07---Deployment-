@@ -82,7 +82,7 @@ public class ActorAdministratorController {
 
 		try {
 			if (!binding.hasErrors()) {
-				this.adminService.SaveForBan(admin);
+				this.adminService.save(admin);
 				result = new ModelAndView("redirect:list.do");
 			} else {
 				result = new ModelAndView("actorsSuspicious/edit");

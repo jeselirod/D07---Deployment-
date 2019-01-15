@@ -19,7 +19,7 @@
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 
 
-<security:authorize access="isAuthenticated()">
+<security:authorize access="hasRole('ADMIN') or hasRole('HANDYWORKER') or hasRole('CUSTOMER') or hasRole('SPONSOR') or hasRole('REFEREE')">
 
 <p><spring:message code="profile.action.1" /></p>
 <display:table pagesize="5" name="boxes" id="row"

@@ -26,10 +26,11 @@ requestURI="suspiciousActor/administrator/list.do" >
 <display:column property="name" titleKey="actor.name"  />
 <display:column property="middleName" titleKey="actor.middleName"  />
 <display:column property="surname" titleKey="actor.surname"  />
+<%--
 <display:column>
 	<jstl:out value="${row.userAccount.authorities }"></jstl:out>
 </display:column>
-
+--%>
 <display:column>
 	<jstl:choose>
 		<jstl:when test = "${fn:contains(row.userAccount.authorities, 'ADMIN') or fn:contains(row.userAccount.authorities, 'ADMIN_BAN')}">

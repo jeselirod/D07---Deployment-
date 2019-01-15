@@ -18,7 +18,7 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 
-<security:authorize access="isAuthenticated()">
+<security:authorize access="hasRole('ADMIN') or hasRole('HANDYWORKER') or hasRole('CUSTOMER') or hasRole('SPONSOR') or hasRole('REFEREE')">
 
 <b><spring:message code="message.moment" />:</b> <fmt:formatDate value="${mensaje.moment }" pattern="yyyy-MM-dd HH:mm" />
 <br/> 
