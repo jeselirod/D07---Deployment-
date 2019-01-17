@@ -88,3 +88,8 @@
 <br/>
 </jstl:forEach>
 <br/></fieldset>
+
+<fieldset>
+<legend><spring:message code="administrator.Handy10percent" /></legend>
+${handyWorker10percent}
+<br/></fieldset>

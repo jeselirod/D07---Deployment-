@@ -195,4 +195,8 @@ public class HandyWorkerService {
 		return this.handyWorkerRepository.getHandyWorkerInvolveInAnyOfHisFixUpTask(customerId);
 	}
 
+	public Collection<String> handyWorkerMoreTentPercentApplicatonsAccepted3() {
+		return this.handyWorkerRepository.handyWorkerMoreTentPercentApplicatonsAccepted3();
+	}
+
 }

@@ -21,4 +21,9 @@ public interface HandyWorkerRepository extends JpaRepository<HandyWorker, Intege
 	@Query("select a.handyWorker from Application a join a.fixUpTask f where f.customer.id = ?1")
 	public Collection<HandyWorker> getHandyWorkerInvolveInAnyOfHisFixUpTask(int customerId);
 
+	@Query("select h.id from HandyWorker h join h.application ha where ha.status = 2 and (select count(a) from Application a where a.status=2 and h.id = a.handyWorker) * 1.1 > (select count(a)*1.0 / (select count(h) from HandyWorker h) from Application a where a.status = 2) order by h.application.size DESC")
+	public Collection<Integer> handyWorkerMoreTentPercentApplicatonsAccepted2();
+
+	@Query("select h.name from HandyWorker h join h.application ha where ha.status = 2 and (select count(a) from Application a where a.status=2 and h.id = a.handyWorker) * 1.1 > (select count(a)*1.0 / (select count(h) from HandyWorker h) from Application a where a.status = 2) order by h.application.size DESC")
+	public Collection<String> handyWorkerMoreTentPercentApplicatonsAccepted3();
 }

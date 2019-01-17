@@ -10,6 +10,7 @@
 
 package controllers;
 
+import java.util.Collection;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -25,6 +26,7 @@ import services.AdministratorService;
 import services.ApplicationService;
 import services.CustomerService;
 import services.FixUpTaskService;
+import services.HandyWorkerService;
 import services.ReportService;
 import domain.Administrator;
 
@@ -44,6 +46,8 @@ public class AdministratorController extends AbstractController {
 	private ReportService			reportService;
 	@Autowired
 	private CustomerService			customerService;
+	@Autowired
+	private HandyWorkerService		handyWorkerService;
 
 
 	// Constructors -----------------------------------------------------------
@@ -140,6 +144,7 @@ public class AdministratorController extends AbstractController {
 		final Double reportNoteDesv = (Double) reportNote.get(0)[3];
 
 		final List<Object[]> customerFix = this.customerService.getCustomerFixUp();
+		final Collection<String> handyWithMore10percent = this.handyWorkerService.handyWorkerMoreTentPercentApplicatonsAccepted3();
 
 		result = new ModelAndView("administrator/dashboard");
 
@@ -180,6 +185,7 @@ public class AdministratorController extends AbstractController {
 
 		result.addObject("customerFix", customerFix);
 
+		result.addObject("handyWorker10percent", handyWithMore10percent);
 		return result;
 	}
 }
