@@ -169,4 +169,8 @@ public class CustomerService {
 	public Collection<Customer> getCustomerForWhomItIsWorked(final int handyWorkerId) {
 		return this.customerRepository.getCustomerForWhomItIsWorked(handyWorkerId);
 	}
+
+	public List<Object[]> getCustomerFixUp() {
+		return this.customerRepository.getCustomerFixUp();
+	}
 }

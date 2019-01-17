@@ -23,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import services.AdministratorService;
 import services.ApplicationService;
+import services.CustomerService;
 import services.FixUpTaskService;
 import services.ReportService;
 import domain.Administrator;
@@ -41,6 +42,8 @@ public class AdministratorController extends AbstractController {
 	private ApplicationService		applicationService;
 	@Autowired
 	private ReportService			reportService;
+	@Autowired
+	private CustomerService			customerService;
 
 
 	// Constructors -----------------------------------------------------------
@@ -136,6 +139,8 @@ public class AdministratorController extends AbstractController {
 		final Double reportNoteMax = (Double) reportNote.get(0)[2];
 		final Double reportNoteDesv = (Double) reportNote.get(0)[3];
 
+		final List<Object[]> customerFix = this.customerService.getCustomerFixUp();
+
 		result = new ModelAndView("administrator/dashboard");
 
 		result.addObject("fixUpMax", fixUpMax);
@@ -172,6 +177,8 @@ public class AdministratorController extends AbstractController {
 		result.addObject("reportNoteMin", reportNoteMin);
 		result.addObject("reportNoteMax", reportNoteMax);
 		result.addObject("reportNoteDesv", reportNoteDesv);
+
+		result.addObject("customerFix", customerFix);
 
 		return result;
 	}

@@ -2,6 +2,7 @@
 package repositories;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -17,6 +18,9 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer> {
 
 	@Query("select f.customer from FixUpTask f join f.application a where a.handyWorker.id = ?1")
 	public Collection<Customer> getCustomerForWhomItIsWorked(int handyWorkerId);
+
+	@Query("select c.name, (select count(f) from FixUpTask f where f.customer.id = c.id) from Customer c where (select count(f) from FixUpTask f where f.customer.id = c.id) >= (select avg(1.0*(select count(f.customer) from FixUpTask f where f.customer.id=c.id)) from Customer c)*1.1")
+	public List<Object[]> getCustomerFixUp();
 }
 /**
  * 

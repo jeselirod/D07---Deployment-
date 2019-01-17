@@ -78,3 +78,13 @@
 <b><spring:message code="administrator.avg" /></b>: ${reportNoteAvg }<br/>
 <b><spring:message code="administrator.desv" /></b>: <b><spring:message code="administrator.desv" /></b>: <fmt:formatNumber type="number" maxIntegerDigits = "2" value ="${reportNoteDesv }"></fmt:formatNumber>
 <br/></fieldset>
+
+<fieldset>
+<legend><spring:message code="administrator.customerFix" /></legend>
+<jstl:forEach var="item" items="${customerFix}">
+<jstl:out value="${item[0]}"></jstl:out>
+
+<jstl:out value="${item[1]}"></jstl:out>
+<br/>
+</jstl:forEach>
+<br/></fieldset>
