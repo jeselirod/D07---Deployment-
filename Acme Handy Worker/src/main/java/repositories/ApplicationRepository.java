@@ -38,4 +38,9 @@ public interface ApplicationRepository extends JpaRepository<Application, Intege
 	@Query("select count(a)*1.0/(select count(a) from Application a where a.status=1) from Application a join a.fixUpTask x where a.status = 1 and date(a.moment) - date(x.moment) < x.periodTime")
 	public Double ratioPendingAppStatus();
 
+	@Query(
+		value = "SELECT (SELECT count(a.id) FROM `acme-handy-worker`.application a join `acme-handy-worker`.fix_up_task f on f.id = a.fix_up_task where a.status =1 and not a.moment between f.moment and (select DATE_ADD(moment, INTERVAL period_time DAY) FROM `acme-handy-worker`.fix_up_task where fix_up_task.id = f.id)) / (SELECT count(ap.id) FROM `acme-handy-worker`.application ap where ap.status=1) FROM `acme-handy-worker`.application x LIMIT 1",
+		nativeQuery = true)
+	public Double ratioPendingAppStatus2();
+
 }

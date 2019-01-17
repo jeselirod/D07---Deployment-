@@ -136,7 +136,7 @@ public class ApplicationService {
 	}
 
 	public Double rationPendingAppStatus() {
-		return this.applicationRepository.ratioPendingAppStatus();
+		return this.applicationRepository.ratioPendingAppStatus2();
 	}
 
 	public List<String> getStatusApp(final int status) {
